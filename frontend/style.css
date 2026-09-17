@@ -1,0 +1,236 @@
+/* =========================================================
+   PawnCare — design tokens
+   ========================================================= */
+:root {
+  --cream: #fff8f0;
+  --card: #f7e9d8;
+  --ink: #2b2118;
+  --teal: #3c6e71;
+  --teal-dark: #2b5153;
+  --apricot: #e8985e;
+  --apricot-dark: #d97f42;
+  --line: #ecdcc6;
+
+  --font-display: "Baloo 2", sans-serif;
+  --font-body: "Nunito Sans", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* =========================================================
+   HEADER / NAVBAR
+   ========================================================= */
+#header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--cream);
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 16px 30px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+/* logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logo-img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.logo-text {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--teal-dark);
+}
+
+/* nav menu — horizontal, not a sidebar */
+#menu {
+  flex: 1;
+  display: flex;
+  gap: 28px;
+}
+
+#menu .link {
+  font-weight: 600;
+  color: var(--ink);
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+#menu .link:hover,
+#menu .link.active {
+  color: var(--teal);
+  border-bottom-color: var(--apricot);
+}
+
+/* login / signup buttons */
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.btn-login {
+  font-weight: 600;
+  color: var(--teal-dark);
+}
+
+.btn-login:hover {
+  color: var(--teal);
+}
+
+.btn-signup {
+  background: var(--apricot);
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 20px;
+  border-radius: 999px;
+  transition: background 0.2s ease;
+}
+
+.btn-signup:hover {
+  background: var(--apricot-dark);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+#content {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 72px 30px;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-text h1 {
+  font-family: var(--font-display);
+  font-size: 44px;
+  line-height: 1.2;
+  color: var(--teal-dark);
+  margin-bottom: 18px;
+}
+
+.hero-text p {
+  font-size: 18px;
+  max-width: 460px;
+  margin-bottom: 28px;
+  color: #5a4c3d;
+}
+
+.btn-cta {
+  display: inline-block;
+  background: var(--teal);
+  color: #fff;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 14px 32px;
+  border-radius: 999px;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.btn-cta:hover {
+  background: var(--teal-dark);
+  transform: translateY(-2px);
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 32px;
+  background: var(--card);
+  box-shadow: 0 24px 48px -24px rgba(43, 33, 24, 0.35);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+@media (max-width: 860px) {
+  .header-inner {
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  #menu {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  #content {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 40px 24px;
+  }
+
+  .hero-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth {
+    gap: 8px;
+  }
+
+  .btn-signup {
+    padding: 8px 16px;
+  }
+
+  .hero-text h1 {
+    font-size: 32px;
+  }
+}
