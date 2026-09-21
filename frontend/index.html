@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./style.css" />
     <title>PawnCare - Chăm sóc thú cưng</title>
   </head>
@@ -15,18 +21,47 @@
           <span class="logo-text">PawnCare</span>
         </a>
 
+        <button class="menu-toggle" id="menuToggle" aria-label="Mở menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
         <nav id="menu">
           <a href="./index.html" class="link active">Trang chủ</a>
-          <a href="#about" class="link">Giới thiệu</a>
+          <a href="./forum.html" class="link">Diễn đàn</a>
+          <a href="./campaigns.html" class="link">Chiến dịch</a>
           <a href="#contact" class="link">Liên hệ</a>
         </nav>
 
-        <div class="auth">
-          <a href="#" class="link btn-login">Đăng nhập</a>
-          <a href="#" class="link btn-signup">Đăng ký</a>
+        <!-- Hiển thị khi CHƯA đăng nhập -->
+        <div class="auth" id="authGuest">
+          <a href="./login.html" class="link btn-login">Đăng nhập</a>
+          <a href="./register.html" class="link btn-signup">Đăng ký</a>
+        </div>
+
+        <!-- Hiển thị khi ĐÃ đăng nhập (script.js điều khiển) -->
+        <div class="auth auth-user" id="authUser" hidden>
+          <a href="./notifications.html" class="icon-btn" aria-label="Thông báo">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+              <path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 2 6H4c.5-.5 2-2 2-6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M10 19a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span class="badge" id="notifBadge" hidden>0</span>
+          </a>
+
+          <div class="user-menu">
+            <button class="avatar-btn" id="avatarBtn" aria-label="Tài khoản">
+              <span id="userInitial">U</span>
+            </button>
+            <div class="dropdown" id="userDropdown" hidden>
+              <p class="dropdown-name" id="userName">—</p>
+              <a href="#" class="dropdown-link">Trang cá nhân</a>
+              <a href="#" class="dropdown-link" id="logoutBtn">Đăng xuất</a>
+            </div>
+          </div>
         </div>
       </div>
     </header>
+
     <!-- ===== HERO ===== -->
     <section id="content">
       <div class="hero-text">
@@ -38,17 +73,249 @@
         <img src="./assets/img/dog.avif" alt="Chú chó đáng yêu" />
       </div>
     </section>
-    <!-- Nội dung chính -->
-    <div class="content">
-      <h2>Dịch vụ của chúng tôi</h2>
-      <p>
-        Chúng tôi cung cấp các dịch vụ chăm sóc thú cưng chuyên nghiệp, bao gồm
-        tắm rửa, cắt tỉa lông, và chăm sóc sức khỏe.
-      </p>
-    </div>
-    <!-- Chân trang -->
-    <div class="footer">
-      <p>&copy; 2026 PawnCare. All rights reserved.</p>
-    </div>
+
+    <!-- ===== DỊCH VỤ ===== -->
+    <section id="services" class="section">
+      <div class="section-inner">
+        <p class="tag">Dịch vụ</p>
+        <h2>Mọi thứ Boss cần, chỉ trong một nơi</h2>
+
+        <div class="service-grid">
+          <article class="service-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M14 6v10a10 10 0 0 0 20 0V6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="34" cy="6" r="3" stroke="currentColor" stroke-width="2.5"/>
+                <path d="M24 26v6a8 8 0 1 1-8 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="16" cy="40" r="2.5" fill="currentColor"/>
+              </svg>
+            </span>
+            <h3>Khám thú y</h3>
+            <p>Phòng khám chuẩn y khoa với bác sĩ thú y giàu kinh nghiệm, trang thiết bị hiện đại.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 26c0-8 7-16 16-16s16 8 16 16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M6 26h36" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <path d="M10 30c1 6 6 10 14 10s13-4 14-10" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+                <circle cx="24" cy="10" r="2" fill="currentColor"/>
+              </svg>
+            </span>
+            <h3>Spa &amp; Tỉa lông</h3>
+            <p>Tắm gội, cắt tỉa tạo kiểu, giúp Boss luôn thơm tho và xinh xắn.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M6 22 24 8l18 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M10 20v18a2 2 0 0 0 2 2h24a2 2 0 0 0 2-2V20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M19 40V28h10v12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <h3>Khách sạn thú cưng</h3>
+            <p>Không gian nghỉ dưỡng thoải mái, an toàn khi ba mẹ bận công tác xa.</p>
+          </article>
+
+          <article class="service-card">
+            <span class="service-icon">
+              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 16h24l-2 22a3 3 0 0 1-3 2.7H17a3 3 0 0 1-3-2.7L12 16Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M17 16v-3a7 7 0 0 1 14 0v3" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </span>
+            <h3>Phụ kiện &amp; Thức ăn</h3>
+            <p>Đầy đủ thức ăn, đồ chơi, phụ kiện chính hãng cho mọi giống loài.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GIỚI THIỆU ===== -->
+    <section id="about" class="section section-alt">
+      <div class="section-inner about-inner">
+        <div class="about-text">
+          <p class="tag">Giới thiệu</p>
+          <h2>PawnCare — người bạn đồng hành cùng Boss nhà bạn</h2>
+          <p class="about-desc">
+            Chúng tôi là đội ngũ yêu động vật, mong muốn mang đến một không gian
+            chăm sóc toàn diện: từ y tế, làm đẹp đến nghỉ dưỡng — để mỗi Boss
+            đều khỏe mạnh và hạnh phúc.
+          </p>
+
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-number">5+</span>
+              <span class="stat-label">Năm hoạt động</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">3,000+</span>
+              <span class="stat-label">Thú cưng đã chăm sóc</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">12</span>
+              <span class="stat-label">Bác sĩ thú y</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-image">
+          <img src="./assets/img/dog.avif" alt="PawnCare chăm sóc thú cưng" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VÌ SAO CHỌN PAWNCARE ===== -->
+    <section class="section">
+      <div class="section-inner">
+        <p class="tag">Vì sao chọn chúng tôi</p>
+        <h2>Sự an tâm cho ba mẹ, niềm vui cho Boss</h2>
+
+        <div class="feature-grid">
+          <div class="feature">
+            <h3>Bác sĩ tận tâm</h3>
+            <p>Đội ngũ bác sĩ thú y được đào tạo bài bản, luôn đồng hành cùng Boss.</p>
+          </div>
+          <div class="feature">
+            <h3>Quy trình minh bạch</h3>
+            <p>Chi phí rõ ràng, thông báo đầy đủ trước mỗi liệu trình chăm sóc.</p>
+          </div>
+          <div class="feature">
+            <h3>Không gian sạch sẽ</h3>
+            <p>Khử khuẩn định kỳ, đảm bảo an toàn vệ sinh cho mọi Boss ghé thăm.</p>
+          </div>
+          <div class="feature">
+            <h3>Hỗ trợ 24/7</h3>
+            <p>Đường dây nóng luôn sẵn sàng tư vấn khi Boss cần hỗ trợ khẩn cấp.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ĐÁNH GIÁ KHÁCH HÀNG ===== -->
+    <section class="section section-alt">
+      <div class="section-inner">
+        <p class="tag">Khách hàng nói gì</p>
+        <h2>Ba mẹ Boss đã tin tưởng PawnCare</h2>
+
+        <div class="review-grid">
+          <article class="review-card">
+            <p class="review-text">
+              “Bé nhà mình rất nhát người lạ nhưng lại quấn các bạn nhân viên ở
+              đây ngay từ lần đầu. Rất yên tâm mỗi lần gửi bé.”
+            </p>
+            <div class="review-author">
+              <span class="avatar">M</span>
+              <div>
+                <p class="author-name">Minh Anh</p>
+                <p class="author-role">Chủ nuôi mèo Anh lông ngắn</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <p class="review-text">
+              “Dịch vụ spa cắt tỉa rất chuyên nghiệp, đúng kiểu mình yêu cầu.
+              Giá cả hợp lý so với chất lượng nhận được.”
+            </p>
+            <div class="review-author">
+              <span class="avatar">T</span>
+              <div>
+                <p class="author-name">Thanh Tùng</p>
+                <p class="author-role">Chủ nuôi Golden Retriever</p>
+              </div>
+            </div>
+          </article>
+
+          <article class="review-card">
+            <p class="review-text">
+              “Đặt lịch khám online nhanh, bác sĩ tư vấn tận tình. Sẽ tiếp tục
+              đồng hành cùng PawnCare lâu dài.”
+            </p>
+            <div class="review-author">
+              <span class="avatar">H</span>
+              <div>
+                <p class="author-name">Hải Yến</p>
+                <p class="author-role">Chủ nuôi Poodle</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA BANNER ===== -->
+    <section class="cta-banner">
+      <div class="section-inner cta-inner">
+        <h2>Sẵn sàng chăm sóc Boss nhà bạn ngay hôm nay?</h2>
+        <p>Đặt lịch trong 30 giây — đội ngũ PawnCare sẽ liên hệ xác nhận sớm nhất.</p>
+        <a href="#contact" class="btn-cta btn-cta-light">Đặt lịch ngay</a>
+      </div>
+    </section>
+
+    <!-- ===== LIÊN HỆ ===== -->
+    <section id="contact" class="section">
+      <div class="section-inner contact-inner">
+        <div class="contact-info">
+          <p class="tag">Liên hệ</p>
+          <h2>Đặt lịch hoặc gửi câu hỏi cho chúng tôi</h2>
+          <ul class="contact-list">
+            <li><strong>Địa chỉ:</strong> 254 Nguyễn Văn Linh, Đà Nẵng</li>
+            <li><strong>Hotline:</strong> 0900 123 456</li>
+            <li><strong>Email:</strong> hello@pawncare.vn</li>
+            <li><strong>Giờ mở cửa:</strong> 8:00 – 20:00, tất cả các ngày</li>
+          </ul>
+        </div>
+
+        <form class="form" id="contactForm">
+          <label data-field="name">
+            Họ và tên
+            <input type="text" name="name" placeholder="Nguyễn Văn A" required />
+          </label>
+          <label data-field="phone">
+            Số điện thoại
+            <input type="tel" name="phone" placeholder="09xx xxx xxx" required />
+          </label>
+          <label data-field="message">
+            Lời nhắn
+            <textarea name="message" rows="4" placeholder="Boss nhà bạn cần dịch vụ gì?"></textarea>
+          </label>
+          <p class="form-message" id="contactMessage"></p>
+          <button type="submit" class="btn-cta">Gửi yêu cầu</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer id="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <a href="./index.html" class="logo">
+            <img src="./assets/img/dog.avif" alt="PawnCare" class="logo-img" />
+            <span class="logo-text">PawnCare</span>
+          </a>
+          <p>Chăm sóc toàn diện cho thú cưng của bạn, mỗi ngày.</p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Điều hướng</h4>
+          <a href="./index.html" class="link">Trang chủ</a>
+          <a href="./forum.html" class="link">Diễn đàn</a>
+          <a href="./campaigns.html" class="link">Chiến dịch</a>
+          <a href="#contact" class="link">Liên hệ</a>
+        </div>
+
+        <div class="footer-links">
+          <h4>Tài khoản</h4>
+          <a href="./login.html" class="link">Đăng nhập</a>
+          <a href="./register.html" class="link">Đăng ký</a>
+        </div>
+      </div>
+      <p class="footer-copy">© 2026 PawnCare. Đồ án nhóm CMU-IS 432-AIS.</p>
+    </footer>
+
+    <script src="./script.js"></script>
   </body>
 </html>

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Thông báo - PawnCare</title>
+  </head>
+  <body>
+    <header id="header">
+      <div class="header-inner">
+        <a href="./index.html" class="logo">
+          <img src="./assets/img/dog.avif" alt="PawnCare" class="logo-img" />
+          <span class="logo-text">PawnCare</span>
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Mở menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+        <nav id="menu">
+          <a href="./index.html" class="link">Trang chủ</a>
+          <a href="./forum.html" class="link">Diễn đàn</a>
+          <a href="./campaigns.html" class="link">Chiến dịch</a>
+          <a href="./index.html#contact" class="link">Liên hệ</a>
+        </nav>
+        <div class="auth" id="authGuest">
+          <a href="./login.html" class="link btn-login">Đăng nhập</a>
+          <a href="./register.html" class="link btn-signup">Đăng ký</a>
+        </div>
+        <div class="auth auth-user" id="authUser" hidden>
+          <a href="./notifications.html" class="icon-btn" aria-label="Thông báo">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+              <path d="M6 9a6 6 0 1 1 12 0c0 4 1.5 5.5 2 6H4c.5-.5 2-2 2-6Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M10 19a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <span class="badge" id="notifBadge" hidden>0</span>
+          </a>
+          <div class="user-menu">
+            <button class="avatar-btn" id="avatarBtn" aria-label="Tài khoản">
+              <span id="userInitial">U</span>
+            </button>
+            <div class="dropdown" id="userDropdown" hidden>
+              <p class="dropdown-name" id="userName">—</p>
+              <a href="#" class="dropdown-link">Trang cá nhân</a>
+              <a href="#" class="dropdown-link" id="logoutBtn">Đăng xuất</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-inner">
+        <p class="tag">Thông báo</p>
+        <h2>Cập nhật mới nhất dành cho bạn</h2>
+
+        <div class="notif-toolbar">
+          <span></span>
+          <button class="btn-text" id="markAllRead" type="button">Đánh dấu tất cả đã đọc</button>
+        </div>
+
+        <div class="notif-list" id="notifList"></div>
+        <p class="empty-state" id="notifEmpty" hidden>Bạn chưa có thông báo nào.</p>
+      </div>
+    </section>
+
+    <footer id="footer">
+      <div class="section-inner footer-inner">
+        <div class="footer-brand">
+          <a href="./index.html" class="logo">
+            <img src="./assets/img/dog.avif" alt="PawnCare" class="logo-img" />
+            <span class="logo-text">PawnCare</span>
+          </a>
+          <p>Chăm sóc toàn diện cho thú cưng của bạn, mỗi ngày.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Điều hướng</h4>
+          <a href="./index.html" class="link">Trang chủ</a>
+          <a href="./forum.html" class="link">Diễn đàn</a>
+          <a href="./campaigns.html" class="link">Chiến dịch</a>
+        </div>
+        <div class="footer-links">
+          <h4>Tài khoản</h4>
+          <a href="./login.html" class="link">Đăng nhập</a>
+          <a href="./register.html" class="link">Đăng ký</a>
+        </div>
+      </div>
+      <p class="footer-copy">© 2026 PawnCare. Đồ án nhóm CMU-IS 432-AIS.</p>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
