@@ -60,34 +60,50 @@ function getCurrentUser() {
   return getData(STORAGE_KEYS.CURRENT_USER, null);
 }
 
-function registerUser({ name, email, phone, password }) {
-  const users = getUsers();
-  const emailExists = users.some(
-    (u) => u.email.toLowerCase() === email.toLowerCase()
-  );
-  if (emailExists) {
-    throw new Error("Email này đã được đăng ký, vui lòng dùng email khác.");
-  }
-  const newUser = { id: Date.now(), name, email, phone, password };
-  users.push(newUser);
-  setData(STORAGE_KEYS.USERS, users);
-  return newUser;
+async function registerUser({ name, email, phone, password }) {
+    const response = await fetch("http://localhost:3000/api/register", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name,
+            email,
+            phone,
+            password
+        })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.message);
+    }
+
+    return data.user;
 }
 
-function loginUser({ email, password }) {
-  const users = getUsers();
-  const user = users.find(
-    (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
-  );
-  if (!user) {
-    throw new Error("Email hoặc mật khẩu không đúng.");
-  }
-  setData(STORAGE_KEYS.CURRENT_USER, {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-  });
-  return user;
+async function loginUser({ email, password }) {
+    const response = await fetch("http://localhost:3000/api/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            email,
+            password
+        })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+        throw new Error(data.message);
+    }
+
+    setData(STORAGE_KEYS.CURRENT_USER, data.user);
+
+    return data.user;
 }
 
 function logoutUser() {
@@ -497,7 +513,7 @@ function initLoginPage() {
 
   const msgEl = document.getElementById("loginMessage");
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit",async (e) => {
     e.preventDefault();
     let valid = true;
 
@@ -520,16 +536,11 @@ function initLoginPage() {
     if (!valid) return;
 
     try {
-      loginUser({ email, password });
-      msgEl.textContent = "Đăng nhập thành công! Đang chuyển hướng...";
-      msgEl.classList.remove("error");
-      msgEl.classList.add("show", "success");
-      setTimeout(() => (window.location.href = "./index.html"), 700);
-    } catch (err) {
-      msgEl.textContent = err.message;
-      msgEl.classList.remove("success");
-      msgEl.classList.add("show", "error");
-    }
+    await loginUser({ email, password });
+    window.location.href = "./index.html";
+} catch (err) {
+    msgEl.textContent = err.message;
+}
   });
 
   // hiển thị thông báo nếu vừa đăng ký thành công (?registered=1)
@@ -547,7 +558,7 @@ function initRegisterPage() {
 
   const msgEl = document.getElementById("registerMessage");
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async(e) => {
     e.preventDefault();
     let valid = true;
 
@@ -591,13 +602,11 @@ function initRegisterPage() {
     }
 
     try {
-      registerUser({ name, email, phone, password });
-      window.location.href = "./login.html?registered=1";
-    } catch (err) {
-      msgEl.textContent = err.message;
-      msgEl.classList.remove("success");
-      msgEl.classList.add("show", "error");
-    }
+    await registerUser({ name, email, phone, password });
+    window.location.href = "./login.html?registered=1";
+} catch (err) {
+    msgEl.textContent = err.message;
+}
   });
 }
 
